@@ -1,0 +1,11 @@
+title: home
+templateScript: /planner/templates/pages/home.ftl
+renderType: freemarker
+dialog: mte:pages/pageProperties
+visible: true
+type: home
+areas:
+  main:
+    availableComponents:
+      planner:
+        id: planner:components/planner

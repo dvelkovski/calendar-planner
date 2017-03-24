@@ -1,0 +1,48 @@
+form:
+  tabs:
+    - name: tabText
+      label: Multivalue composite
+      fields:
+        - name: categories
+          class: info.magnolia.ui.form.field.definition.OptionGroupFieldDefinition
+          multiselect: true
+          type: String
+          label: Cateogories to show on calendar
+          repository: category
+          valueProperty: jcrName
+          labelProperty: displayName
+          path: /events
+        - name: events
+          class: info.magnolia.ui.form.field.definition.MultiValueFieldDefinition
+          label: Events
+          transformerClass: info.magnolia.ui.form.field.transformer.multi.MultiValueSubChildrenNodePropertiesTransformer
+          field:
+            name: compositeField
+            class: info.magnolia.ui.form.field.definition.CompositeFieldDefinition
+            transformerClass: info.magnolia.ui.form.field.transformer.composite.NoOpCompositeTransformer
+            fields:
+              - name: title
+                class: info.magnolia.ui.form.field.definition.TextFieldDefinition
+                label: Title
+              - name: startDate
+                class: info.magnolia.ui.form.field.definition.DateFieldDefinition
+                label: Date
+                time: true
+              - name: endDate
+                class: info.magnolia.ui.form.field.definition.DateFieldDefinition
+                label: Date
+                time: true
+              - name: category
+                class: info.magnolia.ui.form.field.definition.SelectFieldDefinition
+                label: Category
+                path: /events
+                repository: category
+                valueProperty: jcrName
+                labelProperty: displayName
+
+
+actions:
+  commit:
+    class: info.magnolia.ui.admincentral.dialog.action.SaveDialogActionDefinition
+  cancel:
+    class: info.magnolia.ui.admincentral.dialog.action.CancelDialogActionDefinition
