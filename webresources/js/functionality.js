@@ -97,8 +97,8 @@ $(document).ready(function() {
                 var event={title: $existingEventTitle.val(), start:  moment($existingEventStartDate.val()), end:  moment($existingEventEndDate.val()), color:$('#existingEventCategory option:selected').data('color')};
                 var event={
                     title: $existingEventTitle.val(),
-                    start:  moment($existingEventStartDate.val()),
-                    end: moment($existingEventEndDate.val()),
+                    start:  $existingEventStartDate.val(),
+                    end: $existingEventEndDate.val(),
                     color:$('#existingEventCategory option:selected').data('color'),
                     nodeName: nodeName,
                     category: $existingEventCategory.val(),
@@ -136,8 +136,8 @@ $(document).ready(function() {
             {
                 var event={
                     title: $eventTitle.val(),
-                    start:  moment($eventStartDate.val()),
-                    end: moment($eventEndDate.val()),
+                    start:  $eventStartDate.val(),
+                    end: $eventEndDate.val(),
                     color:$('#eventCategory option:selected').data('color'),
                     nodeName: nodeName,
                     category: $eventCategory.val(),
