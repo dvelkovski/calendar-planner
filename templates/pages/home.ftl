@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/fullcalendar.min.css">
         <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/fullcalendar.print.css">
+        <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/planner.css">
   </head>
 <body>
 

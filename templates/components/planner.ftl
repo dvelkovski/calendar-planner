@@ -22,6 +22,9 @@
 
 </div>
 [@alert class="alert-success" id="success-new-event" title="Success" text="Event has been created"/]
+[@alert class="alert-success" id="success-remove-event" title="Success" text="Event has been remove"/]
+[@alert class="alert-success" id="success-update-event" title="Success" text="Event has been updated"/]
+[@alert class="alert-danger" id="error-action" title="" text="Error"/]
 <div id='calendar'></div>
 
 <div class="modal fade" id="doc_create_new_event">
@@ -73,6 +76,7 @@
                 <p class="text-right">
                     <button class="btn" data-dismiss="modal" type="button">Close</button>
                     <button class="btn btn-success" data-dismiss="modal" id="updateEventFromCal" type="button">OK</button>
+                    <button class="btn btn-danger" data-dismiss="modal" id="removeEvent" type="button">Remove event</button>
                 </p>
             </div>
         </div>

@@ -11,7 +11,7 @@ $(document).ready(function() {
     $existingEventEndDate = $("#existingEventEndDate");
     $existingEventTitle = $("#existingEventTitle");
     $existingEventCategory = $("#existingEventCategory");
-    $("#success-new-event").hide();
+
     setEventDateAlwaysAfterStartDate($eventStartDate, $eventEndDate);
     setEventDateAlwaysAfterStartDate($existingEventStartDate, $existingEventEndDate);
 
@@ -20,8 +20,9 @@ $(document).ready(function() {
 	var calendar = $('#calendar').fullCalendar({
         eventSources: buildEventSourceOptions(),
         dayClick: function(date, jsEvent, view) {
-            updateTextField($eventStartDate, date.format());
-            updateTextField($eventEndDate, date.format());
+            date.set({hour:0,minute:0,second:0});
+            updateTextField($eventStartDate, moment(date).toISOString() + "T00:00:00");
+            updateTextField($eventEndDate, moment(date).toISOString() + "T01:00:00");
 
             $("#doc_create_new_event").modal("show");
         },
@@ -57,9 +58,11 @@ $(document).ready(function() {
             success: function()
             {
                 calendar.fullCalendar('removeEvents',eventID);
+                showNotification($("#success-remove-event"));
             },
             error: function(error){
-                alert(error.responseText);
+                console.log(error.responseText);
+                showNotification($("#error-action"));
             }
         });
     });
@@ -84,12 +87,14 @@ $(document).ready(function() {
             contentType: 'application/json',
             success: function()
             {
-                var event={id:1 , title: $existingEventTitle.val(), start:  moment($existingEventStartDate.val()), end:  moment($existingEventEndDate.val()), color:$('#existingEventCategory option:selected').data('color')};
+                var event={title: $existingEventTitle.val(), start:  moment($existingEventStartDate.val()), end:  moment($existingEventEndDate.val()), color:$('#existingEventCategory option:selected').data('color')};
                 calendar.fullCalendar( 'renderEvent', event, true);
                 calendar.fullCalendar('removeEvents',eventID);
+                showNotification($("#success-update-event"));
             },
             error: function(error){
-                alert(error.responseText);
+                console.log(error.responseText);
+                showNotification($("#error-action"));
             }
         });
     });
@@ -99,7 +104,6 @@ $(document).ready(function() {
         var nodeName = moment().unix();
         var path = $urlSettings.val();
         var contextPath = $urlSettings.data("context-path");
-        console.log('/magnoliaAuthor/.rest/nodes/v1/website/' + path + "/"+ EVENTS_NODE_NAME);
         $.ajax
         ({
             url: '/magnoliaAuthor/.rest/nodes/v1/website' + path + "/"+ EVENTS_NODE_NAME,
@@ -115,13 +119,11 @@ $(document).ready(function() {
             {
                 var event={id:1 , title: $eventTitle.val(), start:  moment($eventStartDate.val()), end: moment($eventEndDate.val()), color:$('#eventCategory option:selected').data('color')};
                 calendar.fullCalendar( 'renderEvent', event, true);
-                $("#success-new-event").alert();
-                $("#success-new-event").fadeTo(2000, 500).slideUp(500, function(){
-                    $("#success-new-event").slideUp(500);
-                });
+                showNotification($("#success-new-event"));
             },
             error: function(error){
-                alert(error.responseText);
+                console.log(error.responseText);
+                showNotification($("#error-action"));
             }
         });
     });
@@ -203,5 +205,11 @@ function setEventDateAlwaysAfterStartDate($startDateField, $endDateField){
     });
     $endDateField.on("dp.change", function (e) {
         $startDateField.data("DateTimePicker").maxDate(e.date);
+    });
+}
+function showNotification($alert){
+    $alert.alert();
+    $alert.fadeTo(2000, 500).slideUp(500, function(){
+        $alert.slideUp(500);
     });
 }
