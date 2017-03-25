@@ -11,7 +11,7 @@ $(document).ready(function() {
     $existingEventEndDate = $("#existingEventEndDate");
     $existingEventTitle = $("#existingEventTitle");
     $existingEventCategory = $("#existingEventCategory");
-
+    $("#success-new-event").hide();
     setEventDateAlwaysAfterStartDate($eventStartDate, $eventEndDate);
     setEventDateAlwaysAfterStartDate($existingEventStartDate, $existingEventEndDate);
 
@@ -115,9 +115,9 @@ $(document).ready(function() {
             {
                 var event={id:1 , title: $eventTitle.val(), start:  moment($eventStartDate.val()), end: moment($eventEndDate.val()), color:$('#eventCategory option:selected').data('color')};
                 calendar.fullCalendar( 'renderEvent', event, true);
-                $(".snackbar").snackbar({
-                    alive: 6000,
-                    content: "<div class='aaa'>success</div>"
+                $("#success-new-event").alert();
+                $("#success-new-event").fadeTo(2000, 500).slideUp(500, function(){
+                    $("#success-new-event").slideUp(500);
                 });
             },
             error: function(error){
@@ -190,11 +190,13 @@ function buildEventProperties(startDateVal, endDateVal, eventCategoryVal, eventT
 }
 function setEventDateAlwaysAfterStartDate($startDateField, $endDateField){
     $startDateField.datetimepicker({
-        format: 'YYYY-MM-DDTHH:mm:ss'
+        format: 'YYYY-MM-DDTHH:mm:ss',
+        keepOpen : false
     });
     $endDateField.datetimepicker({
         useCurrent: false, //Important! See issue #1075
-        format: 'YYYY-MM-DDTHH:mm:ss'
+        format: 'YYYY-MM-DDTHH:mm:ss',
+        keepOpen : false
     });
     $startDateField.on("dp.change", function (e) {
         $endDateField.data("DateTimePicker").minDate(e.date);

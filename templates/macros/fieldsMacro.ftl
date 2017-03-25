@@ -18,3 +18,12 @@
         </select>
     </div>
 [/#macro]
+
+[#macro alert class="" id="" title="" text=""]
+
+<div class="alert ${class}" id="${id}">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <strong>${title}! </strong>
+    ${text}
+</div>
+[/#macro]
