@@ -33,6 +33,11 @@ $(document).ready(function() {
             updateTextField($existingEventEndDate, moment(calEvent.end).toISOString());
             updateTextField($existingEventTitle, calEvent.title);
             updateTextField($existingEventCategory, calEvent.category);
+            if(calEvent.className == "my-event"){
+                $(".update-buttons-wrapper").show();
+            }else{
+                $(".update-buttons-wrapper").hide();
+            }
             $("#existingEventNodeName").val(calEvent.nodeName);
             $("#existingEventId").val(calEvent._id);
         }
@@ -138,7 +143,8 @@ function getEventsFromCategory(category){
                 start : $(elem).data("start"),
                 end: $(elem).data("end"),
                 nodeName: $(elem).data("nodename"),
-                category: $(elem).data("category")
+                category: $(elem).data("category"),
+                className: $(elem).data("class-name")
             }
             arr.push(eventObj);
         }

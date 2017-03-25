@@ -4,7 +4,7 @@
 [#assign availableCategories = content.categories!/]
 <div class="mt100"><h1 class="content-sub-heading">${content.title!"Public Planner"}</h1></div>
 <div id="events-wrapper" class="events-wrapper">
-    <input type="hidden" value="${content.@path}" id="urlSettings" data-context-path="${ctx.contextPath}">
+    <input type="hidden" value="${content.@path}" id="urlSettings" data-context-path="${ctx.contextPath}" data-current-user="${ctx.getUser().getName()!}">
 [#if availableCategories?has_content]
     [#list availableCategories as category]
         [#assign catPath = "/events/" +category/]
@@ -15,8 +15,12 @@
 [/#if]
 [#if events?has_content]
     [#list cmsfn.asContentMapList(events?children) as event]
+        [#assign cssClass="other-events"/]
+        [#if (ctx.getUser().getName() == event['mgnl:createdBy'])]
+            [#assign cssClass = "my-event"/]
+        [/#if]
         <span class="event" data-start="[#if event.startDate?has_content]${event.startDate?string["yyyy-MM-dd HH:mm:ss"]}"[/#if]
-              data-nodename="${event.@name}" data-end="[#if event.endDate?has_content]${event.endDate?string["yyyy-MM-dd HH:mm:ss"]}"[/#if] data-color="${event.color!}" data-title="${event.title!}" data-category="${event.category!}"></span>
+              data-nodename="${event.@name}" data-end="[#if event.endDate?has_content]${event.endDate?string["yyyy-MM-dd HH:mm:ss"]}"[/#if] data-color="${event.color!}" data-title="${event.title!}" data-category="${event.category!}" data-class-name="${cssClass}"></span>
     [/#list]
 [/#if]
 
@@ -73,7 +77,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <p class="text-right">
+                <p class="text-right update-buttons-wrapper">
                     <button class="btn" data-dismiss="modal" type="button">Close</button>
                     <button class="btn btn-success" data-dismiss="modal" id="updateEventFromCal" type="button">OK</button>
                     <button class="btn btn-danger" data-dismiss="modal" id="removeEvent" type="button">Remove event</button>
