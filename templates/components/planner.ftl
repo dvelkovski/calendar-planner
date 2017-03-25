@@ -20,7 +20,7 @@
             [#assign cssClass = "my-event"/]
         [/#if]
         <span class="event" data-start="[#if event.startDate?has_content]${event.startDate?string["yyyy-MM-dd HH:mm:ss"]}"[/#if]
-              data-nodename="${event.@name}" data-end="[#if event.endDate?has_content]${event.endDate?string["yyyy-MM-dd HH:mm:ss"]}"[/#if] data-color="${event.color!}" data-title="${event.title!}" data-category="${event.category!}" data-class-name="${cssClass}"></span>
+              data-nodename="${event.@name}" data-end="[#if event.endDate?has_content]${event.endDate?string["yyyy-MM-dd HH:mm:ss"]}"[/#if] data-color="${event.color!}" data-title="${event.title!}" data-category="${event.category!}" data-class-name="${cssClass}" data-description="${event.description!}"></span>
     [/#list]
 [/#if]
 
@@ -44,6 +44,9 @@
                     [@textField name="eventStartDate" id="eventStartDate" label="Event start date" class="datePicker" hint="Enter event start date" type="text"/]
                     [@textField name="eventEndDate" id="eventEndDate" label="Event end date" class="datePicker" hint="Enter event end date" type="text"/]
                     [@selectField name="category" id="eventCategory" label="Category" options=categoriesCM hint="asd" propValue="name" propLabel="displayName" attributes=['color']/]
+                    [@textArea id="eventDescription" label="Description" name="" hint="" rows="5"/]
+
+
                 </div>
             </div>
             <div class="modal-footer">
@@ -74,6 +77,7 @@
                     [@textField name="eventStartDate" id="existingEventStartDate" label="Event start date" class="datePicker" hint="Enter event start date" type="text"/]
                     [@textField name="eventEndDate" id="existingEventEndDate" label="Event end date" class="datePicker" hint="Enter event end date" type="text"/]
                     [@selectField name="category" id="existingEventCategory" label="Category" options=categoriesCM  propValue="name" propLabel="displayName" attributes=['color']/]
+                    [@textArea id="existingEventDescription" label="Description" name="" hint="" rows="5"/]
                 </div>
             </div>
             <div class="modal-footer">

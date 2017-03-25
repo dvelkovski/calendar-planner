@@ -26,3 +26,9 @@
         ${text}
     </div>
 [/#macro]
+[#macro textArea id="" label="" name="" hint="" rows=""]
+    <div class="form-group">
+        <label for="${id}">${label}</label>
+        <textarea class="form-control" name=${name} rows="${rows}" id="${id}"></textarea>
+    </div>
+[/#macro]

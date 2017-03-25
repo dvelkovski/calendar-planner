@@ -32,6 +32,10 @@ form:
                 class: info.magnolia.ui.form.field.definition.DateFieldDefinition
                 label: Date
                 time: true
+              - name: description
+                class: info.magnolia.ui.form.field.definition.TextFieldDefinition
+                label: Short description
+                rows: 5
               - name: category
                 class: info.magnolia.ui.form.field.definition.SelectFieldDefinition
                 label: Category

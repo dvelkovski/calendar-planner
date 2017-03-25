@@ -6,11 +6,13 @@ $(document).ready(function() {
     $eventEndDate = $("#eventEndDate");
     $eventCategory = $("#eventCategory");
     $eventTitle = $("#eventTitle");
+    $eventDescription = $("#eventDescription");
 
     $existingEventStartDate = $("#existingEventStartDate");
     $existingEventEndDate = $("#existingEventEndDate");
     $existingEventTitle = $("#existingEventTitle");
     $existingEventCategory = $("#existingEventCategory");
+    $existingEventDescription = $("#existingEventDescription");
 
     setEventDateAlwaysAfterStartDate($eventStartDate, $eventEndDate);
     setEventDateAlwaysAfterStartDate($existingEventStartDate, $existingEventEndDate);
@@ -20,7 +22,6 @@ $(document).ready(function() {
 	var calendar = $('#calendar').fullCalendar({
         eventSources: buildEventSourceOptions(),
         dayClick: function(date, jsEvent, view) {
-            date.set({hour:0,minute:0,second:0});
             updateTextField($eventStartDate, moment(date).toISOString() + "T00:00:00");
             updateTextField($eventEndDate, moment(date).toISOString() + "T01:00:00");
 
@@ -33,6 +34,7 @@ $(document).ready(function() {
             updateTextField($existingEventEndDate, moment(calEvent.end).toISOString());
             updateTextField($existingEventTitle, calEvent.title);
             updateTextField($existingEventCategory, calEvent.category);
+            updateTextField($existingEventDescription, calEvent.description)
             if(calEvent.className == "my-event"){
                 $(".update-buttons-wrapper").show();
             }else{
@@ -86,13 +88,23 @@ $(document).ready(function() {
                 "name": nodeName,
                 "type": "mgnl:contentNode",
                 "path": path + "/" + EVENTS_NODE_NAME +"/" + nodeName,
-                "property":buildEventProperties($existingEventStartDate.val(),$existingEventEndDate.val(), $existingEventCategory.val(), $existingEventTitle.val())
+                "property":buildEventProperties($existingEventStartDate.val(),$existingEventEndDate.val(), $existingEventCategory.val(), $existingEventTitle.val(), $existingEventDescription.val())
             }),
             type: 'POST',
             contentType: 'application/json',
             success: function()
             {
                 var event={title: $existingEventTitle.val(), start:  moment($existingEventStartDate.val()), end:  moment($existingEventEndDate.val()), color:$('#existingEventCategory option:selected').data('color')};
+                var event={
+                    title: $existingEventTitle.val(),
+                    start:  moment($existingEventStartDate.val()),
+                    end: moment($existingEventEndDate.val()),
+                    color:$('#existingEventCategory option:selected').data('color'),
+                    nodeName: nodeName,
+                    category: $existingEventCategory.val(),
+                    description: $existingEventDescription.val(),
+                    className:"my-event"
+                };
                 calendar.fullCalendar( 'renderEvent', event, true);
                 calendar.fullCalendar('removeEvents',eventID);
                 showNotification($("#success-update-event"));
@@ -116,13 +128,22 @@ $(document).ready(function() {
                 "name": nodeName,
                 "type": "mgnl:contentNode",
                 "path": path + "/" + EVENTS_NODE_NAME +"/" + nodeName,
-                "property": buildEventProperties($eventStartDate.val(), $eventEndDate.val(), $eventCategory.val(), $eventTitle.val())
+                "property": buildEventProperties($eventStartDate.val(), $eventEndDate.val(), $eventCategory.val(), $eventTitle.val(),$eventDescription.val())
             }),
             type: 'PUT',
             contentType: 'application/json',
             success: function()
             {
-                var event={id:1 , title: $eventTitle.val(), start:  moment($eventStartDate.val()), end: moment($eventEndDate.val()), color:$('#eventCategory option:selected').data('color')};
+                var event={
+                    title: $eventTitle.val(),
+                    start:  moment($eventStartDate.val()),
+                    end: moment($eventEndDate.val()),
+                    color:$('#eventCategory option:selected').data('color'),
+                    nodeName: nodeName,
+                    category: $eventCategory.val(),
+                    description: $eventDescription.val(),
+                    className:"my-event"
+                };
                 calendar.fullCalendar( 'renderEvent', event, true);
                 showNotification($("#success-new-event"));
             },
@@ -144,6 +165,7 @@ function getEventsFromCategory(category){
                 end: $(elem).data("end"),
                 nodeName: $(elem).data("nodename"),
                 category: $(elem).data("category"),
+                description: $(elem).data("description"),
                 className: $(elem).data("class-name")
             }
             arr.push(eventObj);
@@ -167,7 +189,7 @@ function buildEventSourceOptions(){
 function updateTextField($field, value){
     $field.val(value);
 }
-function buildEventProperties(startDateVal, endDateVal, eventCategoryVal, eventTitleVal){
+function buildEventProperties(startDateVal, endDateVal, eventCategoryVal, eventTitleVal, descriptionVal){
     var props = [
         {
             "name": "startDate",
@@ -192,6 +214,11 @@ function buildEventProperties(startDateVal, endDateVal, eventCategoryVal, eventT
             "type": "String",
             "multiple": false,
             "value": [eventTitleVal]
+        },{
+            "name": "description",
+            "type": "String",
+            "multiple": false,
+            "value": [descriptionVal]
         }
     ]
     return props;
