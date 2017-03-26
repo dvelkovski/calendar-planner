@@ -1,4 +1,4 @@
-[#include "/planner/templates/macros/fieldsMacro.ftl"/]
+[#include "/magnolia-calendar-planner/templates/macros/fieldsMacro.ftl"/]
 [#assign events = content.events!/]
 [#assign categoriesCM = []/]
 [#assign pathToEventCategories = def.parameters.rootPathForEventsCategories/]

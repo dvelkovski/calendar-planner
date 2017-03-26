@@ -1,5 +1,5 @@
-templateScript: /planner/templates/components/planner.ftl
+templateScript: /magnolia-calendar-planner/templates/components/planner.ftl
 renderType: freemarker
-dialog: planner:components/planner
+dialog: magnolia-calendar-planner:components/planner
 parameters:
   rootPathForEventsCategories: /events/

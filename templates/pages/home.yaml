@@ -1,5 +1,5 @@
 title: home
-templateScript: /planner/templates/pages/home.ftl
+templateScript: /magnolia-calendar-planner/templates/pages/home.ftl
 renderType: freemarker
 dialog: mte:pages/pageProperties
 visible: true
@@ -8,4 +8,4 @@ areas:
   main:
     availableComponents:
       planner:
-        id: planner:components/planner
+        id: magnolia-calendar-planner:components/planner
