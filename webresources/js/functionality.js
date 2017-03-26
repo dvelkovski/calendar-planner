@@ -22,16 +22,16 @@ $(document).ready(function() {
 	var calendar = $('#calendar').fullCalendar({
         eventSources: buildEventSourceOptions(),
         eventRender: function eventRender( event, element, view ) {
-
-           if($('.event-category.active').data("catname")){
-
-            return ['0',event.category].indexOf($('.event-category.active').data("catname")) >= 0
-           }
+            if($('.event-category.active').data("catname")){
+                return ['0',event.category].indexOf($('.event-category.active').data("catname")) >= 0
+            }
         },
         dayClick: function(date, jsEvent, view) {
             if(isActionsAllowed){
                 updateTextField($eventStartDate, moment(date).toISOString() + "T00:00:00");
                 updateTextField($eventEndDate, moment(date).toISOString() + "T01:00:00");
+                updateTextField($eventTitle, "");
+                updateTextField($eventDescription, "");
                 $("#doc_create_new_event").modal("show");
             }
         },
