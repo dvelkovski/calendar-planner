@@ -1,3 +1,5 @@
 templateScript: /planner/templates/components/planner.ftl
 renderType: freemarker
 dialog: planner:components/planner
+parameters:
+  rootPathForEventsCategories: /events/

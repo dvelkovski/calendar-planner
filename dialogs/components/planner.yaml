@@ -1,20 +1,23 @@
 form:
   tabs:
-    - name: tabText
-      label: Multivalue composite
+    - name: tabMain
       fields:
+        - name: title
+          class: info.magnolia.ui.form.field.definition.TextFieldDefinition
         - name: categories
           class: info.magnolia.ui.form.field.definition.OptionGroupFieldDefinition
           multiselect: true
           type: String
-          label: Cateogories to show on calendar
           repository: category
           valueProperty: jcrName
           labelProperty: displayName
           path: /events
+        - name: allowActions
+          class: info.magnolia.ui.form.field.definition.CheckboxFieldDefinition
+    - name: tabEvents
+      fields:
         - name: events
           class: info.magnolia.ui.form.field.definition.MultiValueFieldDefinition
-          label: Events
           transformerClass: info.magnolia.ui.form.field.transformer.multi.MultiValueSubChildrenNodePropertiesTransformer
           field:
             name: compositeField
@@ -23,28 +26,21 @@ form:
             fields:
               - name: title
                 class: info.magnolia.ui.form.field.definition.TextFieldDefinition
-                label: Title
               - name: startDate
                 class: info.magnolia.ui.form.field.definition.DateFieldDefinition
-                label: Date
                 time: true
               - name: endDate
                 class: info.magnolia.ui.form.field.definition.DateFieldDefinition
-                label: Date
                 time: true
               - name: description
                 class: info.magnolia.ui.form.field.definition.TextFieldDefinition
-                label: Short description
                 rows: 5
               - name: category
                 class: info.magnolia.ui.form.field.definition.SelectFieldDefinition
-                label: Category
                 path: /events
                 repository: category
                 valueProperty: jcrName
                 labelProperty: displayName
-
-
 actions:
   commit:
     class: info.magnolia.ui.admincentral.dialog.action.SaveDialogActionDefinition

@@ -1,7 +1,7 @@
 $(document).ready(function() {
     const EVENTS_NODE_NAME = "events";
     $urlSettings = $("#urlSettings");
-
+    isActionsAllowed = $('#calendar').data("allow-actions");
     $eventStartDate = $("#eventStartDate");
     $eventEndDate = $("#eventEndDate");
     $eventCategory = $("#eventCategory");
@@ -22,10 +22,11 @@ $(document).ready(function() {
 	var calendar = $('#calendar').fullCalendar({
         eventSources: buildEventSourceOptions(),
         dayClick: function(date, jsEvent, view) {
-            updateTextField($eventStartDate, moment(date).toISOString() + "T00:00:00");
-            updateTextField($eventEndDate, moment(date).toISOString() + "T01:00:00");
-
-            $("#doc_create_new_event").modal("show");
+            if(isActionsAllowed){
+                updateTextField($eventStartDate, moment(date).toISOString() + "T00:00:00");
+                updateTextField($eventEndDate, moment(date).toISOString() + "T01:00:00");
+                $("#doc_create_new_event").modal("show");
+            }
         },
         eventClick: function(calEvent, jsEvent, view) {
 
@@ -35,7 +36,7 @@ $(document).ready(function() {
             updateTextField($existingEventTitle, calEvent.title);
             updateTextField($existingEventCategory, calEvent.category);
             updateTextField($existingEventDescription, calEvent.description)
-            if(calEvent.className == "my-event"){
+            if(calEvent.className == "my-event" && isActionsAllowed){
                 $(".update-buttons-wrapper").show();
             }else{
                 $(".update-buttons-wrapper").hide();

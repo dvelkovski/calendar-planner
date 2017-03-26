@@ -1,13 +1,14 @@
 [#include "/planner/templates/macros/fieldsMacro.ftl"/]
 [#assign events = content.events!/]
 [#assign categoriesCM = []/]
+[#assign pathToEventCategories = def.parameters.rootPathForEventsCategories/]
 [#assign availableCategories = content.categories!/]
 <div class="mt100"><h1 class="content-sub-heading">${content.title!"Public Planner"}</h1></div>
 <div id="events-wrapper" class="events-wrapper">
     <input type="hidden" value="${content.@path}" id="urlSettings" data-context-path="${ctx.contextPath}" data-current-user="${ctx.getUser().getName()!}">
 [#if availableCategories?has_content]
     [#list availableCategories as category]
-        [#assign catPath = "/events/" +category/]
+        [#assign catPath = pathToEventCategories + category/]
         [#assign eventCategory = cmsfn.contentByPath(catPath, "category")]
         [#assign categoriesCM = categoriesCM + [eventCategory]/]
         <span class="event-category" data-catName="${category}" data-color="${eventCategory["color"]!"blue"}"></span>
@@ -29,7 +30,7 @@
 [@alert class="alert-success" id="success-remove-event" title="Success" text="Event has been remove"/]
 [@alert class="alert-success" id="success-update-event" title="Success" text="Event has been updated"/]
 [@alert class="alert-danger" id="error-action" title="" text="Error"/]
-<div id='calendar'></div>
+<div id='calendar' data-allow-actions="${(content.allowActions!false)?c}"></div>
 
 <div class="modal fade" id="doc_create_new_event">
     <div class="modal-dialog">

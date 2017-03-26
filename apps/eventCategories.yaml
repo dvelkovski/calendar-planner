@@ -1,5 +1,4 @@
 name: eventCategories
-label: Event categories
 icon: icon-pulse
 appClass: info.magnolia.ui.contentapp.ContentApp
 class: info.magnolia.ui.contentapp.ConfiguredContentAppDescriptor
@@ -272,11 +271,10 @@ subApps:
               propertyName: jcrName
               sortable: true
               class: info.magnolia.ui.workbench.column.definition.PropertyColumnDefinition
-            - name: displayName
+            - name: description
               editable: true
               expandRatio: 2.0
-              propertyName: displayName
-              label: Display name
+              propertyName: description
               sortable: true
               class: info.magnolia.ui.workbench.column.definition.PropertyColumnDefinition
             - name: status
@@ -370,57 +368,16 @@ subApps:
           - name: category
             fields:
               - name: name
-                label: Name
                 required: true
                 class: info.magnolia.ui.form.field.definition.TextFieldDefinition
               - name: displayName
                 i18n: true
-                label: Display name
                 class: info.magnolia.ui.form.field.definition.TextFieldDefinition
-              - name: level
-                type: String
-                class: info.magnolia.ui.form.field.definition.SelectFieldDefinition
-                options:
-                  - name: level1
-                    selected: true
-                    label: Level 1
-                    value: level-1
-                  - name: level2
-                    selected: false
-                    value: level-2
-                    label: Level 2
-                  - name: level3
-                    selected: false
-                    value: level-3
-                    label: Level 3
-                  - name: level4
-                    selected: false
-                    value: level-4
-                    label: Level 4
-                  - name: level5
-                    selected: false
-                    value: level-5
-                    label: Level 5
-              - name: relatedUUID
-                transformerClass: info.magnolia.ui.form.field.transformer.multi.MultiValueSubChildrenNodeTransformer
-                buttonSelectAddLabel: field.link.select.add
-                class: info.magnolia.ui.form.field.definition.MultiValueFieldDefinition
-                field:
-                  fieldEditable: false
-                  buttonSelectOtherLabel: field.link.select.another
-                  buttonSelectNewLabel: field.link.select.new
-                  targetWorkspace: category
-                  appName: categories
-                  class: info.magnolia.ui.form.field.definition.LinkFieldDefinition
-                  identifierToPathConverter:
-                    class: info.magnolia.ui.form.field.converter.BaseIdentifierToPathConverter
               - name: description
                 rows: 3
                 i18n: true
-                label: Description
                 class: info.magnolia.ui.form.field.definition.TextFieldDefinition
               - name: color
-                label: Color
                 class: info.magnolia.ui.form.field.definition.TextFieldDefinition
     actions:
       commit:
