@@ -26,8 +26,29 @@ component dialog.
 
 
 ## Usage
-
-
+Enable the `planner`-component  desired areas like this:<br/>
+   ```yaml
+   availableComponents:
+       planner:
+        id: planner:components/planner
+   ```
+Include following css files in page template header
+```
+    <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/fullcalendar.min.css">
+    <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/fullcalendar.print.css">
+    <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/planner.css">
+   ```
+Include following js files in page template footer
+```
+  <script src="${ctx.contextPath}/.resources/planner/webresources/js/jquery-3.2.0.min.js"></script>
+  <script src="${ctx.contextPath}/.resources/planner/webresources/js/bootstrap.min.js"></script>
+  <script src="${ctx.contextPath}/.resources/planner/webresources/js/moment.js"></script>
+  <script src="${ctx.contextPath}/.resources/planner/webresources/js/bootstrap-datetimepicker.js"></script>
+  <script src="${ctx.contextPath}/.resources/planner/webresources/js/fullcalendar.min.js"></script>
+  <script src="${ctx.contextPath}/.resources/planner/webresources/js/functionality.js"></script>
+```
 <!--
 Provide details about how a developer can make the component template,
 or other features provided by the light module, available to content
