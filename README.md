@@ -49,6 +49,26 @@ Include following js files in page template footer
   <script src="${ctx.contextPath}/.resources/planner/webresources/js/fullcalendar.min.js"></script>
   <script src="${ctx.contextPath}/.resources/planner/webresources/js/functionality.js"></script>
 ```
+Create shortcut for event categories app
+Create simple content node with name "eventCategories" under any available magnolia menu groups <br/>
+/* /modules/ui-admincentral/config/appLauncherLayout/groups/edit/apps/eventCategories */
+
+
+To avoid further configuration create folder with name "events" Inside folder create categories for events and set colors for each category. If "events" folder name is already taken in your project create new folder and update the following yaml files to match the new folder name
+
+light-modules/planner/dialogs/components/planner.yaml
+```
+#line 14 and line 40
+#from path: /events
+#to path: /newFolderNameForEventCategories
+```
+light-modules/planner/templates/components/planner.yaml
+
+```
+line 5
+from rootPathForEventsCategories: /events/
+to rootPathForEventsCategories: /newFolderNameForEventCategories/
+```
 <!--
 Provide details about how a developer can make the component template,
 or other features provided by the light module, available to content
