@@ -31,8 +31,6 @@
     <script src="${ctx.contextPath}/.resources/planner/webresources/js/bootstrap.min.js"></script>
     <script src="${ctx.contextPath}/.resources/planner/webresources/js/moment.js"></script>
     <script src="${ctx.contextPath}/.resources/planner/webresources/js/bootstrap-datetimepicker.js"></script>
-
-
     <script src="${ctx.contextPath}/.resources/planner/webresources/js/fullcalendar.min.js"></script>
     <script src="${ctx.contextPath}/.resources/planner/webresources/js/functionality.js"></script>
   </body>
