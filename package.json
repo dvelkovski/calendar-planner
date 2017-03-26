@@ -1,0 +1,28 @@
+{
+  "name": "magnolia-calendar-planner",
+  "version": "1.0.0",
+  "description": "Calendar planner magnolia component with fullcalendar.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvelkovski/calendar-planner.git"
+  },
+  "keywords": [
+    "calendar",
+    "planner",
+    "magnolia",
+    "cms",
+    "fullcalendar",
+    "moment",
+    "rest"
+  ],
+  "author": "dragan.velkovski <draganvelkovski77@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dvelkovski/calendar-planner/issues"
+  },
+  "homepage": "https://github.com/dvelkovski/calendar-planner#readme"
+}
