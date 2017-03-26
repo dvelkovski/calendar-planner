@@ -8,8 +8,9 @@ Allow  users creating/update events,
 
 ## Features
 Offers an editor-friendly way to create/update events and with entering end/start date to show on fullcalendar
-if Allow actions is selected from planner dialog other users who access the calendar page can create also events by clicking a day from calendar or updated their own events
-(screenshots/planner-dialog-actions.png)
+if Allow actions is selected from planner dialog other users who access the calendar page can create also events by clicking a day from 
+calendar or updated their own events
+
 <!--
 Provide a list of the key features this module provides for content
 authors, or whoever the primary user is. For a component template,
