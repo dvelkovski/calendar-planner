@@ -21,6 +21,13 @@ $(document).ready(function() {
 
 	var calendar = $('#calendar').fullCalendar({
         eventSources: buildEventSourceOptions(),
+        eventRender: function eventRender( event, element, view ) {
+
+           if($('.event-category.active').data("catname")){
+
+            return ['0',event.category].indexOf($('.event-category.active').data("catname")) >= 0
+           }
+        },
         dayClick: function(date, jsEvent, view) {
             if(isActionsAllowed){
                 updateTextField($eventStartDate, moment(date).toISOString() + "T00:00:00");
@@ -44,6 +51,15 @@ $(document).ready(function() {
             $("#existingEventNodeName").val(calEvent.nodeName);
             $("#existingEventId").val(calEvent._id);
         }
+    });
+    $('.event-category').click(function(){
+
+
+        $('.event-category').removeClass('active')
+
+        $(this).addClass('active');
+        calendar.fullCalendar('rerenderEvents');
+
     });
     //remove event
     $("#removeEvent").click(function(){
@@ -176,7 +192,7 @@ function getEventsFromCategory(category){
 }
 function buildEventSourceOptions(){
     var arr = [];
-    $("#events-wrapper span.event-category").each(function(index, elem){
+    $("#events-categories span.event-category").each(function(index, elem){
         var catName = $(elem).data("catname");
             var eventFromCatObj = {
                 events : getEventsFromCategory(catName),

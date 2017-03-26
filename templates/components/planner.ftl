@@ -4,17 +4,19 @@
 [#assign pathToEventCategories = def.parameters.rootPathForEventsCategories/]
 [#assign availableCategories = content.categories!/]
 <div class="mt100"><h1 class="content-sub-heading">${content.title!"Public Planner"}</h1></div>
-<div id="events-wrapper" class="events-wrapper">
-    <input type="hidden" value="${content.@path}" id="urlSettings" data-context-path="${ctx.contextPath}" data-current-user="${ctx.getUser().getName()!}">
+<input type="hidden" value="${content.@path}" id="urlSettings" data-context-path="${ctx.contextPath}" data-current-user="${ctx.getUser().getName()!}">
 [#if availableCategories?has_content]
-    [#list availableCategories as category]
-        [#assign catPath = pathToEventCategories + category/]
-        [#assign eventCategory = cmsfn.contentByPath(catPath, "category")]
-        [#assign categoriesCM = categoriesCM + [eventCategory]/]
-        <span class="event-category" data-catName="${category}" data-color="${eventCategory["color"]!"blue"}"></span>
-    [/#list]
+    <div id="events-categories">
+        [#list availableCategories as category]
+            [#assign catPath = pathToEventCategories + category/]
+            [#assign eventCategory = cmsfn.contentByPath(catPath, "category")]
+            [#assign categoriesCM = categoriesCM + [eventCategory]/]
+            <span class="event-category" data-catname="${category}" data-color="${eventCategory["color"]!"blue"}" style="background-color: ${eventCategory["color"]!"blue"}">${eventCategory.displayName!}</span>
+        [/#list]
+    </div>
 [/#if]
 [#if events?has_content]
+<div id="events-wrapper" class="events-wrapper">
     [#list cmsfn.asContentMapList(events?children) as event]
         [#assign cssClass="other-events"/]
         [#if (ctx.getUser().getName() == event['mgnl:createdBy'])]
@@ -23,9 +25,10 @@
         <span class="event" data-start="[#if event.startDate?has_content]${event.startDate?string["yyyy-MM-dd HH:mm:ss"]}"[/#if]
               data-nodename="${event.@name}" data-end="[#if event.endDate?has_content]${event.endDate?string["yyyy-MM-dd HH:mm:ss"]}"[/#if] data-color="${event.color!}" data-title="${event.title!}" data-category="${event.category!}" data-class-name="${cssClass}" data-description="${event.description!}"></span>
     [/#list]
+</div>
 [/#if]
 
-</div>
+
 [@alert class="alert-success" id="success-new-event" title="Success" text="Event has been created"/]
 [@alert class="alert-success" id="success-remove-event" title="Success" text="Event has been remove"/]
 [@alert class="alert-success" id="success-update-event" title="Success" text="Event has been updated"/]

@@ -9,3 +9,9 @@
 .fc-time{
     display: none;
 }
+.event-category{
+    display: inline-block;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+}
