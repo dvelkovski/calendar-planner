@@ -34,20 +34,20 @@ Enable the `planner`-component  desired areas like this:<br/>
    ```
 Include following css files in page template header
 ```
-    <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/fullcalendar.min.css">
-    <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/fullcalendar.print.css">
-    <link rel="stylesheet" href="${ctx.contextPath}/.resources/planner/webresources/css/planner.css">
+    <link rel="stylesheet" href="${ctx.contextPath}/.resources/magnolia-calendar-planner/webresources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx.contextPath}/.resources/magnolia-calendar-planner/webresources/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="${ctx.contextPath}/.resources/magnolia-calendar-planner/webresources/css/fullcalendar.min.css">
+    <link rel="stylesheet" href="${ctx.contextPath}/.resources/magnolia-calendar-planner/webresources/css/fullcalendar.print.css">
+    <link rel="stylesheet" href="${ctx.contextPath}/.resources/magnolia-calendar-planner/webresources/css/planner.css">
    ```
 Include following js files in page template footer
 ```
-  <script src="${ctx.contextPath}/.resources/planner/webresources/js/jquery-3.2.0.min.js"></script>
-  <script src="${ctx.contextPath}/.resources/planner/webresources/js/bootstrap.min.js"></script>
-  <script src="${ctx.contextPath}/.resources/planner/webresources/js/moment.js"></script>
-  <script src="${ctx.contextPath}/.resources/planner/webresources/js/bootstrap-datetimepicker.js"></script>
-  <script src="${ctx.contextPath}/.resources/planner/webresources/js/fullcalendar.min.js"></script>
-  <script src="${ctx.contextPath}/.resources/planner/webresources/js/functionality.js"></script>
+  <script src="${ctx.contextPath}/.resources/magnolia-calendar-planner/webresources/js/jquery-3.2.0.min.js"></script>
+  <script src="${ctx.contextPath}/.resources/magnolia-calendar-planner/webresources/js/bootstrap.min.js"></script>
+  <script src="${ctx.contextPath}/.resources/magnolia-calendar-planner/webresources/js/moment.js"></script>
+  <script src="${ctx.contextPath}/.resources/magnolia-calendar-planner/webresources/js/bootstrap-datetimepicker.js"></script>
+  <script src="${ctx.contextPath}/.resources/magnolia-calendar-planner/webresources/js/fullcalendar.min.js"></script>
+  <script src="${ctx.contextPath}/.resources/magnolia-calendar-planner/webresources/js/functionality.js"></script>
 ```
 Create shortcut for event categories app
 Create simple content node with name "eventCategories" under any available magnolia menu groups <br/>
