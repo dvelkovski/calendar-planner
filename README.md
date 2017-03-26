@@ -12,7 +12,7 @@ if Allow actions is selected from planner dialog other users who access the cale
 calendar or updated their own events
 
 ![planner-dialog-actions](screenshots/planner-dialog-actions.png)
-![events-in-dialog](screenshots/events-in-dialog-planner.png.png)
+![events-in-dialog](screenshots/events-in-dialog-planner.png)
 ![calendar-view](screenshots/calendar-view-events.png)
 ![event-update](screenshots/update-event.png)
 ![event-new](screenshots/new-event.png)
