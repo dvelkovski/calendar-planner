@@ -56,7 +56,7 @@ Create simple content node with name "eventCategories" under any available magno
 
 To avoid further configuration create folder with name "events" Inside folder create categories for events and set colors for each category. If "events" folder name is already taken in your project create new folder and update the following yaml files to match the new folder name
 
-light-modules/planner/dialogs/components/planner.yaml
+light-modules/magnolia-calendar-planner/dialogs/components/planner.yaml
 ```
 #line 14 and line 40
 #from path: /events
