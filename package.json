@@ -1,6 +1,6 @@
 {
   "name": "magnolia-calendar-planner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Calendar planner magnolia component with fullcalendar.js",
   "main": "index.js",
   "scripts": {
