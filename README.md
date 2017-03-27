@@ -29,8 +29,8 @@ component dialog.
 Enable the `planner`-component  desired areas like this:<br/>
    ```yaml
    availableComponents:
-       planner:
-        id: planner:components/planner
+       magnolia-calendar-planner:
+        id: magnolia-calendar-planner:components/planner
    ```
 Include following css files in page template header
 ```
