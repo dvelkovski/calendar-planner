@@ -1,9 +1,10 @@
-title: home
-templateScript: /magnolia-calendar-planner/templates/pages/home.ftl
+#calendar page that contains js and css files for calendar component
+title: page.calendar
+templateScript: /magnolia-calendar-planner/templates/pages/calendar-page.ftl
 renderType: freemarker
 dialog: mte:pages/pageProperties
 visible: true
-type: home
+type: feature
 areas:
   main:
     availableComponents:
